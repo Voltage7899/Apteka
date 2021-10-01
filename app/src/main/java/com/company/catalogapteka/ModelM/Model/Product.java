@@ -1,4 +1,4 @@
-package com.company.catalogapteka;
+package com.company.catalogapteka.ModelM.Model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

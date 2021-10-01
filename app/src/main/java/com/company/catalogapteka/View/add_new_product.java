@@ -1,4 +1,4 @@
-package com.company.catalogapteka;
+package com.company.catalogapteka.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.view.View;
 
+import com.company.catalogapteka.ViewModel.AddViewModel;
 import com.company.catalogapteka.databinding.ActivityAddNewProductBinding;
 
 public class add_new_product extends AppCompatActivity {

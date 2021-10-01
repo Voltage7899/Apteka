@@ -1,4 +1,4 @@
-package com.company.catalogapteka;
+package com.company.catalogapteka.View;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.company.catalogapteka.ModelM.Model.Product;
+import com.company.catalogapteka.R;
 
 import java.util.List;
 

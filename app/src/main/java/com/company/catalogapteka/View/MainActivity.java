@@ -1,4 +1,4 @@
-package com.company.catalogapteka;
+package com.company.catalogapteka.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +16,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.company.catalogapteka.ModelM.Model.Product;
+import com.company.catalogapteka.R;
+import com.company.catalogapteka.ModelM.Repository.Repository;
+import com.company.catalogapteka.ViewModel.ListViewModel;
 
 import java.util.List;
 
