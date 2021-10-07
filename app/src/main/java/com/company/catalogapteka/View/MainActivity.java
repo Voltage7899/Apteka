@@ -13,20 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.company.catalogapteka.ItemProductActivity;
 import com.company.catalogapteka.ModelM.Model.Product;
 import com.company.catalogapteka.R;
 import com.company.catalogapteka.ModelM.Repository.Repository;
 import com.company.catalogapteka.ViewModel.ListViewModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private ListViewModel listViewModel;
     private Button button;
@@ -108,10 +111,26 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
+                Log.d("MyTag","WhileDelete "+((ProductListAdapter)recyclerView.getAdapter()).productList.get(position).image);
                 listViewModel.deleteParty(((ProductListAdapter)recyclerView.getAdapter()).productList.get(position));
                 // database.userDAO().DeleteUser(((ProductListAdapter)recyclerView.getAdapter()).productList.get(position));
             }
         }).attachToRecyclerView(recyclerView);
+        productListAdapter.setOnItemClickListener(new ProductListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Product product) {
+
+                Intent intent=new Intent(MainActivity.this,ItemProductActivity.class);
+
+                Log.d("MyTag","click "+product.image);
+                intent.putExtra("image",product.image);
+                intent.putExtra("id",product.id);
+                intent.putExtra("name",product.name);
+                intent.putExtra("desc",product.description);
+                intent.putExtra("price",product.price);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -122,4 +141,6 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }

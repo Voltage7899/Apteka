@@ -14,4 +14,13 @@ public class AddViewModel extends ViewModel {
         product.price=price;
         Repository.getDataBase().addProduct(product);
     }
+    public  void updateProductThroughViewModel(int id,String name, String last,String price,String image){
+        Product product =new Product();
+        product.image=image;
+        product.id=id;
+        product.name=name;
+        product.description=last;
+        product.price=price;
+        Repository.getDataBase().updateProduct(product);
+    }
 }

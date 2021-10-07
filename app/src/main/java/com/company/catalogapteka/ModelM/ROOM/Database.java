@@ -11,7 +11,7 @@ import com.company.catalogapteka.ModelM.Model.Product;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@androidx.room.Database(entities = {Product.class},version = 1)
+@androidx.room.Database(entities = {Product.class},version = 3)
 public abstract class Database extends RoomDatabase {
 
     public abstract ProductDAO productDAO();
@@ -24,7 +24,9 @@ public abstract class Database extends RoomDatabase {
     public  static  Database getInstance(Context context){
 
         if(INSTANCE==null){
-            INSTANCE= Room.databaseBuilder(context.getApplicationContext(),Database.class,"UserDB").build();
+            INSTANCE= Room
+                    .databaseBuilder(context.getApplicationContext(),Database.class,"UserDB")
+                    .fallbackToDestructiveMigration().build();
 
         }
 

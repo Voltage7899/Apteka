@@ -38,5 +38,13 @@ public class ProductRepository {
             }
         });
     }
+    public void updateProduct(Product product){
+        Database.databaseWriteExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                productDAO.updateProduct(product);
+            }
+        });
+    }
 
 }

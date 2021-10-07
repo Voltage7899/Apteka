@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.company.catalogapteka.ModelM.Model.Product;
 
@@ -21,5 +22,8 @@ public interface ProductDAO {
 
     @Delete
     void DeleteProduct(Product product);
+
+    @Update
+    void updateProduct(Product product);
 
 }
