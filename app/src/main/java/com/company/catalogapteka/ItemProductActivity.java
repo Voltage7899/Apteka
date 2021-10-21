@@ -80,25 +80,36 @@ public class ItemProductActivity extends AppCompatActivity {
             }
         });
     }
+
+//    Здесь происходит выбор изображения из локального хранилища устройства
     public void chooseImage(){
         img_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
+                //Указываем какое действие мы хотим от намерения
+                Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                //Указываем какие данные хотим получить
                 intent.setType("image/*");
+                //Запускаем намерение с возвращаемым результатом
                 startActivityForResult(Intent.createChooser(intent,"pickImage"),1);
             }
         });
     }
-
+//Здесь мы получаем картинку из галлереи
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode==RESULT_OK && requestCode==1){
-
+            //Вытаскиваем ссылку на картинку из даты
             uri=data.getData();
+            //Устанавливаем картинку
             img_product.setImageURI(data.getData());
+            //Даем постоянное разрешение к этой ссылке через ContentResolver
+            getContentResolver().takePersistableUriPermission(uri,Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+
+
         }
     }
 }
