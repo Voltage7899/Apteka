@@ -2,6 +2,7 @@ package com.company.catalogapteka;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -9,24 +10,32 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.company.catalogapteka.ModelM.Repository.Repository;
 import com.company.catalogapteka.ViewModel.AddViewModel;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
+import static java.security.AccessController.getContext;
 
 public class ItemProductActivity extends AppCompatActivity {
 
     private ImageView img_product;
-    private EditText name,desc,price;
+    private EditText desc,price;
+    private AutoCompleteTextView name;
     private Button update;
     private AddViewModel addViewModel;
     private int id;
@@ -44,6 +53,38 @@ public class ItemProductActivity extends AppCompatActivity {
         desc=findViewById(R.id.item_description);
         price=findViewById(R.id.item_price);
         update=findViewById(R.id.update);
+
+        name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    Log.d(TAG,"API INSTANCE " + Repository.getAPILOGIC());
+                    addViewModel.getTovarsFromInet(s.toString()).observe(ItemProductActivity.this, new Observer<List<String>>() {
+                        @Override
+                        public void onChanged(List<String> strings) {
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(ItemProductActivity.this,android.R.layout.simple_dropdown_item_1line,strings);
+                            adapter.getFilter().filter(null);
+                            name.setAdapter(adapter);
+                        }
+
+
+                    });
+
+
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         Intent intent=getIntent();
 

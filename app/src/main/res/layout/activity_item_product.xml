@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ItemProductActivity">
 
-    <EditText
+    <AutoCompleteTextView
+        android:hint="Enter name product"
         android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.325" />
+        app:layout_constraintVertical_bias="0.325"
+        android:completionThreshold="1"/>
 
     <EditText
         android:id="@+id/item_description"
@@ -68,4 +70,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.027"
         app:srcCompat="@drawable/ic_launcher_foreground" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
