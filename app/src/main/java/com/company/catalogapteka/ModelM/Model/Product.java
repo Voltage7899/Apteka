@@ -22,7 +22,8 @@ public class Product {
     public String price;
     @ColumnInfo(name="image")
     public String image;
-
+    @ColumnInfo(name="address")
+    public String address;
 
 
 

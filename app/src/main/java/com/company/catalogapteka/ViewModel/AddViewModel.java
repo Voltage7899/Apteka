@@ -4,8 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.company.catalogapteka.APILogic;
 import com.company.catalogapteka.ModelM.Model.Product;
 import com.company.catalogapteka.ModelM.Repository.Repository;
 
@@ -31,8 +31,8 @@ public class AddViewModel extends ViewModel {
         product.price=price;
         Repository.getDataBase().updateProduct(product);
     }
-    public LiveData<List<String>> getTovarsFromInet(String tovars_sugg) {
-        Log.d(TAG,"Instance Retrofit in viewMODEl"+ Repository.getAPILOGIC());
-        return Repository.getAPILOGIC().getTovarsIntended(tovars_sugg);
-    }
+//    public LiveData<APILogic.geoDataResponse.geoData> getGeoDataThroughViewModel(String adress) {
+//
+//        return Repository.getAPILOGIC().getGeoData(adress);
+//    }
 }

@@ -8,10 +8,13 @@ import retrofit2.http.POST;
 
 public interface API {
 
-    @POST("api/4_1/rs/suggest/mktu")
+    //Указываем изменяемую часть ссылки,куда будем кидать запрос
+    //Также указываем параметры,которые просят в документации
+    //После аннтотации боди содержится сам запрос
+    @POST("api/v1/clean/address")
     @Headers({
         "Content-Type: application/json",
-        "Accept: application/json"
+        "X-Secret: f9a7a97111b8b02a4a288d6e9a1375924e58607f"
     })
-    Call<APILogic.TovarsFromServer> listTovars(@Body APILogic.TovarsRequest request, @Header("Authorization") String token);
+    Call<APILogic.geoDataResponse> listTovars(@Body APILogic.adressRequest request, @Header("Authorization") String token);
 }

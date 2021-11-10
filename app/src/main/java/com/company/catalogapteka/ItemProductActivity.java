@@ -54,37 +54,7 @@ public class ItemProductActivity extends AppCompatActivity {
         price=findViewById(R.id.item_price);
         update=findViewById(R.id.update);
 
-        name.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    Log.d(TAG,"API INSTANCE " + Repository.getAPILOGIC());
-                    addViewModel.getTovarsFromInet(s.toString()).observe(ItemProductActivity.this, new Observer<List<String>>() {
-                        @Override
-                        public void onChanged(List<String> strings) {
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(ItemProductActivity.this,android.R.layout.simple_dropdown_item_1line,strings);
-                            adapter.getFilter().filter(null);
-                            name.setAdapter(adapter);
-                        }
-
-
-                    });
-
-
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         Intent intent=getIntent();
 
